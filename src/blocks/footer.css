@@ -1,0 +1,39 @@
+.footer {
+  color: #545454;
+  font-weight: 400;
+  font-size: 18px;
+  padding-bottom: 60px;
+  padding-top: 67px;
+  width: 100%;
+}
+.footer__copyright {
+  margin: 0;
+}
+
+@media screen and (max-width: 960px) {
+  .footer {
+    max-width: 282px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .footer {
+    max-width: 282px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    max-width: 588px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1120px) {
+  .footer {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,62 @@
+.header {
+  width: 100%;
+  padding: 45px 0 0 0;
+}
+
+.header__logo {
+  width: 100%;
+  max-width: 173px;
+  display: block;
+  padding-bottom: 41px;
+}
+
+.header__line {
+  width: 100%;
+  height: 1px;
+  background-color: #545454;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 960px) {
+  .header {
+    max-width: 540px;
+    padding: 28px 0 0 0;
+  }
+
+  .header__logo {
+    max-width: 150px;
+    padding: 0 0 32px 27px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .header {
+    max-width: 320px;
+    padding: 28px 0 0 0;
+  }
+
+  .header__logo {
+    max-width: 126px;
+    padding: 0 0 32px 27px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    max-width: 588px;
+    padding: 28px 0 0 0;
+  }
+
+  .header__logo {
+    max-width: 126px;
+    padding: 0 0 32px 0;
+  }
+}
+
+@media screen and (min-width: 1120px) {
+  .header {
+    max-width: 880px;
+  }
+}

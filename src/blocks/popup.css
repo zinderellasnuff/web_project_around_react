@@ -1,0 +1,127 @@
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.popup_is-opened {
+  display: flex; /* Cambié de block a flex para que el contenido se centre */
+  z-index: 1000;
+}
+
+.popup__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 430px;
+  position: relative;
+  padding-bottom: 36.51px;
+}
+
+.popup__close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.popup__form {
+  width: 100%;
+  max-width: 358px;
+}
+
+.popup__title {
+  width: 100%;
+  max-width: 330px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+  padding: 34px 64px 54px 30px;
+  margin: 0;
+}
+
+.popup__label {
+  display: block;
+  margin: 0;
+}
+
+.popup__input {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 29.74px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 358px;
+  outline: none;
+}
+
+.popup__input:invalid {
+  border-color: red;
+}
+
+.popup__input:valid {
+  border-color: green;
+}
+
+.popup__input:invalid ~ .popup__error {
+  display: block;
+  color: red;
+}
+
+.popup__error {
+  display: none;
+  font-size: 12px;
+}
+
+.popup__button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.popup__button:hover {
+  background-color: grey;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__content {
+    max-width: 282px;
+  }
+
+  .popup__form {
+    max-width: 238px;
+  }
+
+  .popup__title {
+    max-width: 238px;
+    padding: 25px 22px 76px;
+  }
+
+  .popup__input {
+    max-width: 238px;
+    margin: 0 auto;
+  }
+
+  .popup__button {
+    max-width: 238px;
+    margin: 0 auto;
+  }
+}
