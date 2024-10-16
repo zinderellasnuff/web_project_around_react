@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/%7Bweb_project_around_react%7D/static/css/main.823e4d4d.css",
+    "main.js": "/%7Bweb_project_around_react%7D/static/js/main.f30373e1.js",
+    "static/js/453.8d428687.chunk.js": "/%7Bweb_project_around_react%7D/static/js/453.8d428687.chunk.js",
+    "static/media/Inter-Medium.woff2": "/%7Bweb_project_around_react%7D/static/media/Inter-Medium.9c1163dc5cc2a1c9b55b.woff2",
+    "static/media/Inter-Bold.woff2": "/%7Bweb_project_around_react%7D/static/media/Inter-Bold.c3c9f10a4dbfc7314a59.woff2",
+    "static/media/element__like.svg": "/%7Bweb_project_around_react%7D/static/media/element__like.99043841e8bec6b9df21.svg",
+    "index.html": "/%7Bweb_project_around_react%7D/index.html",
+    "static/media/element__trash.svg": "/%7Bweb_project_around_react%7D/static/media/element__trash.c4956c32989e66228de8.svg",
+    "static/media/element__like-active.svg": "/%7Bweb_project_around_react%7D/static/media/element__like-active.f8482d28867cec189b08.svg",
+    "static/media/profile__button.svg": "/%7Bweb_project_around_react%7D/static/media/profile__button.6c7bf05444b9793fdf6e.svg",
+    "static/media/profile__button-edit.svg": "/%7Bweb_project_around_react%7D/static/media/profile__button-edit.8667ac4a523e8fc42e59641845fc8448.svg",
+    "main.823e4d4d.css.map": "/%7Bweb_project_around_react%7D/static/css/main.823e4d4d.css.map",
+    "main.f30373e1.js.map": "/%7Bweb_project_around_react%7D/static/js/main.f30373e1.js.map",
+    "453.8d428687.chunk.js.map": "/%7Bweb_project_around_react%7D/static/js/453.8d428687.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.823e4d4d.css",
+    "static/js/main.f30373e1.js"
+  ]
+}
