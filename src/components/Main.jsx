@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ImagePopup from "./ImagePopup";
 import Card from "./Card "
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import Popup from "../Popup"
+import Popup from "./Popup"
 
 function Main({
   onEditProfileClick,
