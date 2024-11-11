@@ -1,100 +1,122 @@
-import buttonEdit from "../images/profile__button-edit.svg";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
+import Popup from "./Popup"; // Asegúrate de importar el Popup correctamente
 import ImagePopup from "./ImagePopup";
-import Card from "./Card "
+import Card from "./Card ";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import Popup from "./Popup"
+import buttonEdit from "../images/profile__button-edit.svg";
 
 function Main({
-  onEditProfileClick,
-  onEditAvatarClick,
-  onAddPlaceClick,
-  handleCardClick,
-  selectedCard,
-  closeAllPopups,
-  cards,
-  onCardLike,
-  onCardDelete,
-}) {
+                onEditProfileClick,
+                onEditAvatarClick,
+                onAddPlaceClick,
+                handleCardClick,
+                selectedCard,
+                closeAllPopups,
+                cards,
+                onCardLike,
+                onCardDelete,
+              }) {
   const { currentUser } = useContext(CurrentUserContext);
 
   if (!currentUser) {
     return <div>Loading...</div>;
   }
 
-  return (
-    <main className="content">
-      <section className="profile">
-        <div className="profile__avatar">
-          <img
-            src={currentUser.avatar}
-            alt="Foto de Perfil"
-            className="profile__image"
-          />
-          <div
-            className="profile__avatar-edit-icon"
-            onClick={onEditAvatarClick}
-          >
-            <img src={buttonEdit} alt="Editar foto de perfil" />
-          </div>
-        </div>
+  // Estado para abrir/cerrar el popup
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-        <div className="profile__info">
-          <div className="profile__info-content">
-            <h5 className="profile__info-name">{currentUser.name}</h5>
+  // Función para abrir el popup
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  // Función para cerrar el popup
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  // Manejo de envío del formulario del popup
+  const handlePopupSubmit = (event) => {
+    event.preventDefault();
+    // Aquí puedes agregar la lógica para procesar el formulario
+    closePopup();
+  };
+
+  return (
+      <main className="content">
+        <section className="profile">
+          <div className="profile__avatar">
+            <img
+                src={currentUser.avatar}
+                alt="Foto de Perfil"
+                className="profile__image"
+            />
+            <div
+                className="profile__avatar-edit-icon"
+                onClick={onEditAvatarClick}
+            >
+              <img src={buttonEdit} alt="Editar foto de perfil" />
+            </div>
+          </div>
+
+          <div className="profile__info">
+            <div className="profile__info-content">
+              <h5 className="profile__info-name">{currentUser.name}</h5>
+              <button
+                  className="profile__info-button"
+                  aria-label="Editar perfil"
+                  onClick={onEditProfileClick}
+              ></button>
+            </div>
+            <p className="profile__info-subtitle">{currentUser.about}</p>
+          </div>
+
+          <div className="profile__container">
             <button
-              className="profile__info-button"
-              aria-label="Editar perfil"
-              onClick={onEditProfileClick}
+                className="profile__button-add"
+                aria-label="Añadir tarjeta"
+                onClick={onAddPlaceClick}
             ></button>
           </div>
-          <p className="profile__info-subtitle">{currentUser.about}</p>
+        </section>
+
+        <div className="elements__container">
+          {cards.map((card) => {
+            const isOwn = card.owner === currentUser._id;
+            const isLiked = card && card.likes && card.likes.some((like) => like._id === currentUser._id);
+
+            const cardDeleteButtonClassName = `element__button-trash ${isOwn ? 'element__button-trash_visible' : 'element__button-trash_hidden'}`;
+            const cardLikeButtonClassName = `element__button-like ${isLiked ? 'element__button-like-active' : ''}`;
+
+            return (
+                <Card
+                    key={card._id}
+                    card={card}
+                    onCardClick={handleCardClick}
+                    onCardLike={onCardLike}
+                    onCardDelete={onCardDelete}
+                    cardLikeButtonClassName={cardLikeButtonClassName}
+                    cardDeleteButtonClassName={cardDeleteButtonClassName}
+                    isOwn={isOwn}
+                />
+            );
+          })}
         </div>
 
-        <div className="profile__container">
-          <button
-            className="profile__button-add"
-            aria-label="Añadir tarjeta"
-            onClick={onAddPlaceClick}
-          ></button>
-        </div>
-      </section>
+        {/* Aquí incluyes el Popup */}
+        <Popup
+            name="profile"
+            title="Editar Perfil"
+            isOpen={isPopupOpen}
+            onClose={closePopup}
+            onSubmit={handlePopupSubmit}
+        >
+          <input type="text" name="name" placeholder="Nombre" />
+          <input type="text" name="about" placeholder="Acerca de mí" />
+        </Popup>
 
-      <div className="elements__container">
-        {cards.map((card) => {
-          // Verificar si el propietario de la tarjeta es el usuario actual
-          const isOwn = card.owner === currentUser._id;
-          console.log(isOwn);
-          // Verificar si la tarjeta ya está "liked" por el usuario
-          const isLiked = card && card.likes && card.likes.some((like) => like._id === currentUser._id);
-
-          // Definir las clases para los botones de "delete" y "like"
-          const cardDeleteButtonClassName = `element__button-trash ${isOwn ? 'element__button-trash_visible' : 'element__button-trash_hidden'}`;
-          const cardLikeButtonClassName = `element__button-like ${isLiked ? 'element__button-like-active' : ''}`;
-          console.log(cardDeleteButtonClassName)
-
-          console.log("card.owner._id:", card.owner._id);
-          console.log("currentUser._id:", currentUser._id);
-          console.log("card:", card);
-          // Retornar el componente Card con las props necesarias
-          return (
-            <Card
-              key={card._id} // Usar _id como la key para cada tarjeta
-              card={card}
-              onCardClick={handleCardClick} // Manejador del clic en la tarjeta (para ver detalles)
-              onCardLike={onCardLike} // Función para manejar el like
-              onCardDelete={onCardDelete} // Función para manejar el delete
-              cardLikeButtonClassName={cardLikeButtonClassName} // Clases para el botón de like
-              cardDeleteButtonClassName={cardDeleteButtonClassName} // Clases para el botón de delete
-              isOwn={isOwn} // Indicador si la tarjeta es del usuario actual
-            />
-          );
-        })}
-      </div>
-
-
-      <ImagePopup selectedCard={selectedCard} onClose={closeAllPopups} />
-    </main>
+        <ImagePopup selectedCard={selectedCard} onClose={closeAllPopups} />
+      </main>
   );
 }
 
