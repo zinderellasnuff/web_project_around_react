@@ -5,9 +5,9 @@ import Footer from "./Footer";
 import React, { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/Api";
-import EditAvatarPopup from "./EditAvatarPopup";
-import EditProfilePopup from "./EditProfilePopup";
-import AddPlacePopup from "./AddPlacePopup";
+import EditAvatarPopup from "./EditAvatar";
+import EditProfilePopup from "./EditProfile";
+import AddPlacePopup from "./NewCard";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
