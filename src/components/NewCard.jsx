@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import PopupWithForm from "./PopupWithForm";
+import PopupWithForm from "./Popup";
 
 function NewCard({ isOpen, onClose, onAddPlaceSubmit }) {
   const [title, setTitle] = useState("")

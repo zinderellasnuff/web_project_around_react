@@ -1,4 +1,4 @@
-function PopupWithForm({ name, title, children, isOpen, onClose, onSubmit }) {
+function Popup({ name, title, children, isOpen, onClose, onSubmit }) {
   return (
     <div
       className={`popup popup_type-${name} ${isOpen ? "popup_is-opened" : ""}`}
@@ -28,4 +28,4 @@ function PopupWithForm({ name, title, children, isOpen, onClose, onSubmit }) {
   );
 }
 
-export default PopupWithForm;
+export default Popup;
