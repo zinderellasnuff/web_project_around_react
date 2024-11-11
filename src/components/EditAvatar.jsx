@@ -1,7 +1,7 @@
 import PopupWithForm from "./PopupWithForm";
 import { useRef } from "react";
 
-function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+function EditAvatar({ isOpen, onClose, onUpdateAvatar }) {
   const avatarInputRef = useRef();
 
   function handleSubmit(e) {
@@ -36,4 +36,4 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   )
 }
 
-export default EditAvatarPopup;
+export default EditAvatar;
