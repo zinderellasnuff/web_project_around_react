@@ -2,7 +2,7 @@ import buttonEdit from "../images/profile__button-edit.svg";
 import React, { useContext, useEffect, useState } from "react";
 import ImagePopup from "./ImagePopup";
 import Card from "./Card "
-import CurrentUserContext from "./CurrentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Main({
   onEditProfileClick,
@@ -18,7 +18,7 @@ function Main({
   const { currentUser } = useContext(CurrentUserContext);
 
   if (!currentUser) {
-    return <div>Loading...</div>; // Añadir "Loading..." hasta que currentUser esté disponible
+    return <div>Loading...</div>;
   }
 
   return (

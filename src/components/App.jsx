@@ -1,9 +1,9 @@
-import "../pages/index.css";
+import "../index.css";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import React, { useContext, useEffect, useState } from "react";
-import CurrentUserContext from "./CurrentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/Api";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
