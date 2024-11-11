@@ -11,21 +11,30 @@ class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
-  // Fetches user information
+  // Obtener información del usuario
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
-  // Fetches initial set of cards
+  // Establecer la información del usuario
+  setUserInfo(data) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data),
+    }).then(this._checkResponse);
+  }
+
+  // Obtener listado de tarjetas
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
-  // Updates user information
+  // Actualizar información del usuario
   updateUserInfo(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -37,44 +46,55 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  // Adds a new card
-  addNewCard(name, link) {
+  // Agregar una nueva tarjeta
+  addNewCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
         ...this._headers,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, link }),
+      body: JSON.stringify(data),
     }).then(this._checkResponse);
   }
 
-  // Deletes a card
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  // Eliminar una tarjeta
+  deleteCard(_id) {
+    return fetch(`${this._baseUrl}/cards/${_id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
-  // Likes a card
-  likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  // Añadir "me gusta" a una tarjeta
+  likeCard(_id, userId) {
+    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       method: "PUT",
       headers: this._headers,
+      body: JSON.stringify({ userId }), // Enviar el ID del usuario
     }).then(this._checkResponse);
   }
 
-  // Unlikes a card
-  unlikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  unlikeCard(_id, userId) {
+    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       method: "DELETE",
       headers: this._headers,
+      body: JSON.stringify({ userId }), // Enviar el ID del usuario
     }).then(this._checkResponse);
   }
 
-  // Updates user avatar
-  updateAvatar(avatar) {
+  // Cambiar el estado de "me gusta" de una tarjeta
+  changeLikeCardStatus(_id, isLiked, userId) {
+    if (isLiked) {
+      return this.likeCard(_id, userId);
+    } else {
+      return this.unlikeCard(_id, userId);
+    }
+  }
+
+
+  // Actualizar el avatar del usuario
+  setUpdateAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
@@ -87,9 +107,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/web_es_10", // Asegúrate de que la URL sea correcta
+  baseUrl: "https://around-api.es.tripleten-services.com/v1",
   headers: {
-    authorization: "541d0e53-114b-4fb1-9af0-b09c04c191b9", // Tu token de autorización
+    authorization: "6cd6e144-d49d-46d4-b04b-c07cd75377a8",
     "Content-Type": "application/json",
   },
 });

@@ -25,11 +25,19 @@
   border-radius: 10px 10px 0 0;
 }
 
+.element__button-trash_visible {
+  display:block;
+}
+
+.element__button-trash_hidden{
+  display: none;
+}
+
 .element__button-trash {
   z-index: 1;
   position: absolute;
   background: url("../images/images__element/element__trash.svg") no-repeat
-    center;
+  center;
   background-size: contain;
   width: 20px;
   height: 20px;
@@ -79,7 +87,7 @@
 
 .element__button-like {
   background: url("../images/images__element/element__like.svg") no-repeat
-    center;
+  center;
   background-size: cover;
   width: 8px;
   height: 16px;
@@ -96,12 +104,13 @@
 
 .element__button-like-active {
   background: url("../images/images__element/element__like-active.svg")
-    no-repeat center;
+  no-repeat center;
   background-size: cover;
   width: 8px;
   height: 16px;
   border: none;
   box-sizing: content-box;
+  opacity: 1;
 }
 
 @media screen and (max-width: 340px) {
