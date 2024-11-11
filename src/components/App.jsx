@@ -82,33 +82,21 @@ function App() {
   const handleCardLike = (card) => {
     const updatedCards = cards.map((c) => {
       if (c._id === card._id) {
-        // Cambiar el estado de "likes" al hacer click
-        const isLiked = c.likes.some((like) => like._id === currentUser._id);
+        // Comprobar si el usuario ya ha dado like
+        const isLiked = card.likes && card.likes.some((like) => like._id === currentUser._id);
         const updatedLikes = isLiked
-          ? c.likes.filter((like) => like._id !== currentUser._id)
-          : [...c.likes, currentUser]; // Añadir o eliminar al like
+            ? c.likes.filter((like) => like._id !== currentUser._id) // Remover el like
+            : [...(c.likes || []), { _id: currentUser._id }]; // Añadir el like
+
+        // Retornar la tarjeta actualizada con el nuevo estado de likes
         return { ...c, likes: updatedLikes };
       }
-      return c;
+      return c; // Retornar las tarjetas no modificadas
     });
 
     setCards(updatedCards);
-
-    // Verifica si card.likes está definido, y si no lo está, asigna un array vacío
-    //const likes = card.likes || [];
-    //const isLiked = likes.some((like) => like._id === currentUser._id); // Verifica si el usuario ya dio like
-
-    //const userId = currentUser._id; // El ID del usuario que da el like
-
-    //api.changeLikeCardStatus(card._id, !isLiked, userId)
-    //  .then(updatedCard => {
-    // Actualizar el estado de las tarjetas con el card actualizado
-    //    setCards(prevCards =>
-    //      prevCards.map(c => c._id === updatedCard._id ? updatedCard : c)
-    //    );
-    //  })
-    //  .catch((error) => console.error('Error al actualizar like:', error));
   };
+  
   async function handleCardDelete(card) {
     try {
       await api.deleteCard(card._id);
